@@ -1,0 +1,188 @@
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    padding: 20px 10px !important;
+    border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+    /*    padding: 14px 24px;
+        font-size: 21px;*/
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 40px 0;
+}
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+#sortable{
+    height: 50%;
+    overflow: auto;
+    margin-bottom: 5px;
+    border: 1px solid #AFA9A9;    
+    position: relative;
+}
+#sortable1 div{
+    position: absolute !important;
+}
+.elem{
+    float: left;
+    width: 20%;
+    cursor: pointer;
+    border: 1px solid #C1BEBE;
+    height: 70px;
+    margin: 0 2% 5px 0;
+}
+.col-xs-6{
+    /*width: 49%;*/
+}
+.pot {
+    padding-top: 8px !important;
+    margin-bottom: 0px;
+    border: 1px solid #C1BEBE;
+    height: 200px;   
+    position: relative;
+}
+.pot .elem{
+    width: 100%;
+}
+.btnParent{
+    text-align: center;
+}
+.potparent{
+    margin-top: 5px;
+}
+.potHeading{
+    height: 20px; background-color: grey;
+    margin-bottom: 5px;
+    color: #fff;
+}
+#btnGuess{
+    margin: 5px 0;
+}
+.potparent .thumbnail{
+    border-radius: 0px;
+}
+.zindex{
+    z-index: 999;
+}
+.alche-btn{
+    
+}
+.alche-btn-default{
+
+}
+.alert {
+    padding: 5px;
+    margin: 0px;
+    border-radius: 0px;
+    cursor: pointer;
+}
+#gamePlay{
+    padding-top: 5px;
+}
+.lvlNo{
+    text-align: center;
+    
+}
+.lvlDiv{
+    height: 100px;
+    width: 80px; cursor: pointer;
+    background-color: #D0D0D0;
+    float: left; margin: 5px;
+}
+.lvlComp{
+    
+}
+.lvlTarget{
+    text-align: center;
+}
+.info{
+    height: 30px;
+}
+.info .label{
+    font-size: 100%;
+    display: inline-block;
+    margin-top: 4px;
+}
+.divTarget{
+    float: left;
+    display: inline-block;
+}
+.target{
+    float: left;
+    padding: 5px;
+}
+.parentDivSucc{
+    width: 97%;
+    height: 100%;
+    text-align: center;
+}
+#sortable1 .childDivSucc{
+    position: relative !important;
+    margin: 0 auto;
+    margin-top: 10%;
+    display: inline-block;
+}
