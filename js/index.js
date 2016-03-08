@@ -17,37 +17,41 @@ function getRecords() {
         success: function (resp) {
 
             $.each(resp, function (index, val) {
-                var newTr = '<tr id="tr' + val.id + '">';
+                var newTr = '<tr id="tr' + val.Call_No + '">';
                 var inpSelected = '', comSelected = '';
-                if(val.CallStatus === 'in-progress'){
+                
+                if(val.cbd_status === 'p'){
                     inpSelected = 'selected';
                 }
-                if(val.CallStatus === 'complete'){
+                if(val.cbd_status === 'c'){
                     comSelected = 'selected';
                 }
-                newTr += '<td class="recordId">' + val.id + '</td><td>' + val.FirstName + " " + val.LastName + '</td><td>' + val.Address + '</td>' +
-                        '<td><input type="text" class="clsDate" value="' + val.call_date + '"/></td>' +
+                newTr += '<td class="recordId">' + val.Call_No + '</td>'+
+                        '<td><input type="text" class="clsDate" value="' + val.Call_Date + '"/></td>' +
+                        '<td>' + val.Ac_Party_Mobile_No + '</td>' +
+                        '<td>' + val.Ac_Name + '</td>' +
+                        '<td>' + val.Problem + '</td>' +
+                        '<td>' + val.City + '</td>' +                        
                         '<td>' +
                         '<select class="callStatus">' +
-                        '<option value="in-progress" '+inpSelected+' label="In-progress">In-progress</option>' +
-                        '<option value="complete" '+comSelected+' label="Complete">Complete</option>' +
+                        '<option value="p" '+inpSelected+' label="In-progress">In-progress</option>' +
+                        '<option value="c" '+comSelected+' label="Complete">Complete</option>' +
                         '</select></td>' +
                         '<td><input type="button" name="save" id="btnSave" value="Save" class="btn btn-success"></td>';
                 newTr += '</tr>';
                 $('.tblBody').append(newTr);
 
-                $("#tr" + val.id).find(".clsDate").datepicker({
+                $("#tr" + val.Call_No).find(".clsDate").datepicker({
                     defaultDate: "+1w",
                     changeMonth: true,
                     changeYear: true,
                     numberOfMonths: 1,
                     dateFormat: "yy-mm-dd"
-                            //beforeShowDay:$.datepicker.noWeekends
                 });
 
-                $("#tr" + val.id).find("#btnSave").click(function () {
+                $("#tr" + val.Call_No).find("#btnSave").click(function () {
                     var fdata = {
-                        id: $(this).parent().parent().find('.recordId').text(),
+                        Call_No: $(this).parent().parent().find('.recordId').text(),
                         date: $(this).parent().parent().find('.clsDate').val(),
                         status: $(this).parent().parent().find('.callStatus').val(),
                         mode: 'update'
