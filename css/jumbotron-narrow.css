@@ -77,112 +77,13 @@ body {
         border-bottom: 0;
     }
 }
-#sortable{
-    height: 50%;
-    overflow: auto;
-    margin-bottom: 5px;
-    border: 1px solid #AFA9A9;    
-    position: relative;
-}
-#sortable1 div{
-    position: absolute !important;
-}
-.elem{
-    float: left;
-    width: 20%;
-    cursor: pointer;
-    border: 1px solid #C1BEBE;
-    height: 70px;
-    margin: 0 2% 5px 0;
-}
-.col-xs-6{
-    /*width: 49%;*/
-}
-.pot {
-    padding-top: 8px !important;
-    margin-bottom: 0px;
-    border: 1px solid #C1BEBE;
-    height: 200px;   
-    position: relative;
-}
-.pot .elem{
-    width: 100%;
-}
-.btnParent{
-    text-align: center;
-}
-.potparent{
-    margin-top: 5px;
-}
-.potHeading{
-    height: 20px; background-color: grey;
-    margin-bottom: 5px;
-    color: #fff;
-}
-#btnGuess{
-    margin: 5px 0;
-}
-.potparent .thumbnail{
-    border-radius: 0px;
-}
-.zindex{
-    z-index: 999;
-}
-.alche-btn{
-    
-}
-.alche-btn-default{
 
-}
-.alert {
-    padding: 5px;
-    margin: 0px;
-    border-radius: 0px;
-    cursor: pointer;
-}
-#gamePlay{
-    padding-top: 5px;
-}
-.lvlNo{
-    text-align: center;
-    
-}
-.lvlDiv{
-    height: 100px;
-    width: 80px; cursor: pointer;
-    background-color: #D0D0D0;
-    float: left; margin: 5px;
-}
-.lvlComp{
-    
-}
-.lvlTarget{
+.tblLogin{
+    border: none;
     text-align: center;
 }
-.info{
-    height: 30px;
-}
-.info .label{
-    font-size: 100%;
-    display: inline-block;
-    margin-top: 4px;
-}
-.divTarget{
-    float: left;
-    display: inline-block;
-}
-.target{
-    float: left;
-    padding: 5px;
-}
-.parentDivSucc{
-    width: 97%;
-    height: 100%;
+
+.tblLogin th{
+    border: none !important;
     text-align: center;
-}
-#sortable1 .childDivSucc{
-    position: relative !important;
-    margin: 0 auto;
-    margin-top: 10%;
-    display: inline-block;
-}
+}    
