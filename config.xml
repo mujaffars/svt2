@@ -12,6 +12,9 @@
     <preference name="android-build-tool" value="gradle" /> 
     <gap:plugin name="cordova-plugin-admobpro" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+    
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
+    
     <!-- Customize your app and platform with the preference element. -->
     <preference name="orientation"                value="landscape" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="handset" />      <!-- all: possible values handset, tablet, or universal -->

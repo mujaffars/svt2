@@ -86,4 +86,28 @@ body {
 .tblLogin th{
     border: none !important;
     text-align: center;
-}    
+}
+.tblLogin td{
+    text-align: center;
+}
+#phoneNumber{
+    margin-bottom: 10px;
+}
+.error{
+    color: red;
+}
+.tblLogin{
+    margin: 0 auto;
+    width: 75%;
+}
+.tblVerify{
+    margin: 0 auto;
+    width: 75%;
+}
+.tblVerify th{
+    border: none !important;
+    text-align: center;
+}
+.tblVerify td{
+    text-align: center;
+}

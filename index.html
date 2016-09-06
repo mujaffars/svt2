@@ -35,45 +35,85 @@
 
         <link rel="stylesheet" href="js/datepicker/css/redmond/jquery-ui-1.10.1.custom.min.css" />
 
-        <title>Login Page</title>
+        <title>Call Log</title>
     </head>
-    <body role="document" onload="onLoad()" onresize="onResize()">
+    <body onload="onLoad()">
 
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Call log</a>
+        <form id="loginForm">
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Call log</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="container theme-showcase" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="tblLogin table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Please enter your phone no</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+                                <tr>
+                                    <td>
+                                        <input name="phoneNumber" id="phoneNumber" type="text" />
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="btnSendCode" type="button" value="Submit"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="tblVerify table table-striped table-bordered hide">
+                            <thead>
+                                <tr>
+                                    <th>Enter pin received on mobile no <span class="enteredMNo"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+                                <tr>
+                                    <td>
+                                        <input name="txtPin" id="txtPin" type="text" />
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="btnCheckPin" type="button" value="Verify"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="tableRecords table table-striped table-bordered hide">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <div class="container theme-showcase" role="main">
-
-            <div class="row">
-
-                <div class="col-md-6">
-                    <table class="tblLogin table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Please enter your phone no</th>
-                            </tr>
-                            <tr>
-                                <th><input id="txtPhoneNo" type="text" /></th>                                
-                            </tr>
-                            <tr>
-                                <th><input id="btnSendCode" type="button" /></th>
-                            </tr>
-                        </thead>
-                        <tbody class="tblBody">
-
-                        </tbody>
-                    </table>
-                </div>
+            
+            <div id="latlongText">
+                
             </div>
-
-        </div> <!-- /container -->
-
+        </form>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -84,5 +124,8 @@
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script src="js/datepicker/js/jquery-ui-1.10.1.custom.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.js"></script>
     </body>
 </html>
