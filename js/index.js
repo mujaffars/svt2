@@ -99,7 +99,7 @@ $(function () {
 
 function generateOTP() {
     var fdata = {
-        mobileNo: $("#phoneNumber").val()
+        data: $("#phoneNumber").val()
     };
     $.ajax({
         url: serverHost,
@@ -110,9 +110,7 @@ function generateOTP() {
         error: function () {
         },
         success: function (resp) {
-            if (resp.status == 'success') {
-
-            }
+            
         }
     });
 }

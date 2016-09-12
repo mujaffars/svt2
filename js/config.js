@@ -1,1 +1,1 @@
-var serverHost = '';
+var serverHost = 'http://shivtraderssangli.com/getdata.aspx';
