@@ -25,7 +25,7 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap theme CSS -->
@@ -44,6 +44,7 @@
                 <div class="container">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Call log</a>
+                        <a class="lnkLogOut navbar-brand hide" href="#">Log Out</a>
                     </div>
                 </div>
             </nav>
@@ -53,13 +54,13 @@
                         <table class="tblLogin table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Please enter your phone no</th>
+                                    <th>Please enter your mobile no</th>
                                 </tr>
                             </thead>
                             <tbody class="tblBody">
                                 <tr>
                                     <td>
-                                        <input name="phoneNumber" id="phoneNumber" type="text" maxlength="10"/>
+                                        <input name="phoneNumber" id="phoneNumber" type="text" maxlength="10" value=""/>
                                     </td>                                
                                 </tr>
                                 <tr>
@@ -79,7 +80,7 @@
                             <tbody class="tblBody">
                                 <tr>
                                     <td>
-                                        <input name="txtPin" id="txtPin" type="text" />
+                                        <input name="txtPin" id="txtPin" type="text" value=""/>
                                     </td>                                
                                 </tr>
                                 <tr>
@@ -106,12 +107,17 @@
                             </tbody>
                         </table>
 
+                        <div id="divCallRecords">
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div id="latlongText">
-                
+
+            <div id="latlongText" class="hide">
+
+            </div>
+            <div id="divCheckPin" class="hide">
+
             </div>
         </form>
 
@@ -120,12 +126,14 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery-1.10.2.js"></script>
         <script src="js/jquery-ui.js"></script>
+        <script src="js/config.js"></script>
         <script src="js/index.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script src="js/datepicker/js/jquery-ui-1.10.1.custom.min.js"></script>
-        <script src="js/config.js"></script>
         <script src="js/jquery.validate.min.js"></script>
         <script src="js/additional-methods.js"></script>
+
+
     </body>
 </html>

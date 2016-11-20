@@ -80,7 +80,11 @@ body {
 
 .tblLogin{
     border: none;
+    margin: 0 auto;
+    width: 75%;
     text-align: center;
+    text-transform: none;
+    margin-top: 35%;
 }
 
 .tblLogin th{
@@ -96,13 +100,14 @@ body {
 .error{
     color: red;
 }
-.tblLogin{
-    margin: 0 auto;
-    width: 75%;
+.lnkLogOut{
+    float: right;
 }
 .tblVerify{
+    text-transform: none;
     margin: 0 auto;
     width: 75%;
+    margin-top: 35%;
 }
 .tblVerify th{
     border: none !important;
