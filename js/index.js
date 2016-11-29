@@ -179,6 +179,7 @@ function checkOTP() {
             if (checkHtml === 'Yes') {
                 localStorage.setItem("logedIn", "true");
                 $('.lnkLogOut').removeClass('hide');
+                $('#btnRefresh').removeClass('hide');
                 localStorage.setItem("logedInMobile", fdata.data);
                 localStorage.setItem("logedInPin", fdata.pin);
                 getRecords();
