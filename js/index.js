@@ -6,7 +6,7 @@
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
     changeCss('#GridView1, #btnRefresh', 'font-size:' + eval(fontSize / 2.2) + 'px;');
-    
+
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
         $('#divLoading').removeClass('hide');
@@ -19,8 +19,7 @@
     $('.lnkLogOut').click(function () {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             (navigator.app && navigator.app.exitApp()) || (device && device.exitApp());
-        }
-        else {
+        } else {
             localStorage.setItem("logedIn", "false");
             $('#divCallRecords').hide();
             $('.tblLogin').show();
@@ -147,6 +146,14 @@ function generateOTP() {
         error: function () {
         },
         success: function (resp) {
+            $('#divUserId').html(resp);
+            var checkHtml = $.trim($('#divUserId').find("div").eq(2).html());
+            var splitHtml = checkHtml.split("<br>");
+            console.log(splitHtml);
+            var userId = parseInt(splitHtml[0]);
+            if ($.isNumeric(userId)) {
+                localStorage.setItem("userId", userId);
+            }
             $(".enteredMNo").text($("#phoneNumber").val());
             $(".tblLogin").addClass('hide');
             $(".tblVerify").removeClass('hide');
@@ -192,10 +199,15 @@ function checkOTP() {
 
 function getRecords() {
     $('.tblBody').html('');
+    var fdata = {
+        call: 'P',
+        id: localStorage.getItem("userId")
+    };
     $.ajax({
-        url: serverHost + '?call=P',
+        url: serverHost,
         type: 'GET',
         dataType: 'html',
+        data: fdata,
         async: true,
         error: function () {
         },
