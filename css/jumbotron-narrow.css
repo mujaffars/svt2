@@ -84,7 +84,7 @@ body {
     width: 75%;
     text-align: center;
     text-transform: none;
-    margin-top: 35%;
+    margin-top: 10%;
 }
 
 .tblLogin th{
@@ -107,7 +107,7 @@ body {
     text-transform: none;
     margin: 0 auto;
     width: 75%;
-    margin-top: 35%;
+    margin-top: 10%;
 }
 .tblVerify th{
     border: none !important;

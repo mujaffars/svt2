@@ -6,7 +6,7 @@
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
     changeCss('#GridView1, #btnRefresh', 'font-size:' + eval(fontSize / 2.2) + 'px;');
-
+    
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
         $('#divLoading').removeClass('hide');
