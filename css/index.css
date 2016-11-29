@@ -131,3 +131,6 @@ h1 {
 .cntainr{
     margin: 0 10px;
 }
+#btnRefresh{
+    float: right;
+}

@@ -5,12 +5,13 @@
     changeCss('#divCallRecords', 'font-size:' + recordFontSize + 'px;');
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
+    changeCss('#GridView1, #btnRefresh', 'font-size:' + eval(fontSize / 2.2) + 'px;');
 
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
         $('#divLoading').removeClass('hide');
         $('.tblLogin, .tblVerify').addClass('hide');
-        $('.lnkLogOut').removeClass('hide');
+        $('.lnkLogOut, #btnRefresh').removeClass('hide');
 
         getRecords();
     }
@@ -27,7 +28,10 @@
             window.location.reload();
         }
     })
-
+    $('#btnRefresh').click(function () {
+        $('#divLoading').removeClass('hide');
+        getRecords();
+    })
 })();
 
 function onLoad() {
