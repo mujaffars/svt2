@@ -7,6 +7,11 @@ var serverHost = 'http://shivtraderssangli.com/getdata.aspx';
 
 var screenHeight = parseInt($(window).height());
 var screenWidth = parseInt($(window).width());
-var fontSize = parseInt(eval(eval(screenWidth * 7) / 100));
-var recordFontSize = parseInt(eval(eval(screenWidth * 4) / 100));
+if (screenWidth < screenHeight) {
+    var fontSize = parseInt(eval(eval(screenWidth * 7) / 100));
+    var recordFontSize = parseInt(eval(eval(screenWidth * 4) / 100));
+} else {
+    var fontSize = parseInt(eval(eval(screenHeight * 7) / 100));
+    var recordFontSize = parseInt(eval(eval(screenHeight * 4) / 100));
+}
 var logedIn = false;

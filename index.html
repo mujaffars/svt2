@@ -44,17 +44,17 @@
                 <div class="container">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">Call log</a>
-                        <a class="lnkLogOut navbar-brand hide" href="#">Log Out</a>
+                        <a class="lnkLogOut navbar-brand hide" href="#">Exit</a>
                     </div>
                 </div>
             </nav>
-            <div class="container theme-showcase" >
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="tblLogin table table-striped table-bordered">
+            <div class="cntainr">
+                <div class="">
+                    <div>
+                        <table class="tblLogin table table-striped table-bordered clsTbl">
                             <thead>
                                 <tr>
-                                    <th>Please enter your mobile no</th>
+                                    <th>Enter your mobile no.</th>
                                 </tr>
                             </thead>
                             <tbody class="tblBody">
@@ -65,16 +65,16 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="btnSendCode" type="button" value="Submit"/>
+                                        <input id="btnSendCode" type="button" value="Submit" class="btn btn-success btn-lg"/>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <table class="tblVerify table table-striped table-bordered hide">
+                        <table class="tblVerify table table-striped table-bordered hide clsTbl">
                             <thead>
                                 <tr>
-                                    <th>Enter pin received on mobile no <span class="enteredMNo"></span></th>
+                                    <th>Enter pin received on <span class="enteredMNo"></span></th>
                                 </tr>
                             </thead>
                             <tbody class="tblBody">
@@ -85,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="btnCheckPin" type="button" value="Verify"/>
+                                        <input id="btnCheckPin" type="button" value="Verify" class="btn btn-success btn-lg"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -106,7 +106,12 @@
 
                             </tbody>
                         </table>
-
+                        
+                        <div id="divLoading" class="hide">
+                            <img src="img/ajax-loader.gif" class="imgLoader"/><br/>
+                            Loading...
+                        </div>
+                        
                         <div id="divCallRecords">
                         </div>
                     </div>

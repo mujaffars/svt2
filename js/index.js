@@ -1,21 +1,31 @@
 (function () {
     changeCss('body', 'font-size:' + fontSize + 'px;');
+    changeCss('.btn', 'font-size:' + fontSize + 'px;');
+    changeCss('.navbar-brand', 'font-size:' + eval(fontSize / 2) + 'px;');
     changeCss('#divCallRecords', 'font-size:' + recordFontSize + 'px;');
+    changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
+    changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
 
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
-        $('.tblLogin, .tblVerify').hide();
+        $('#divLoading').removeClass('hide');
+        $('.tblLogin, .tblVerify').addClass('hide');
         $('.lnkLogOut').removeClass('hide');
 
         getRecords();
     }
 
     $('.lnkLogOut').click(function () {
-        localStorage.setItem("logedIn", "false");
-        $('#divCallRecords').hide();
-        $('.tblLogin').show();
-        $('.lnkLogOut').addClass('hide');
-        window.location.reload();
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            (navigator.app && navigator.app.exitApp()) || (device && device.exitApp());
+        }
+        else {
+            localStorage.setItem("logedIn", "false");
+            $('#divCallRecords').hide();
+            $('.tblLogin').show();
+            $('.lnkLogOut').addClass('hide');
+            window.location.reload();
+        }
     })
 
 })();
@@ -90,10 +100,6 @@ $(function () {
 
         if ($("#loginForm").valid()) {
             generateOTP();
-
-            $(".enteredMNo").text($("#phoneNumber").val());
-            $(".tblLogin").addClass('hide');
-            $(".tblVerify").removeClass('hide');
         }
 
     })
@@ -123,6 +129,7 @@ $(function () {
 });
 
 function generateOTP() {
+    $('#divLoading').removeClass('hide');
     var fdata = {
         data: $("#phoneNumber").val(),
         status: 0
@@ -136,12 +143,16 @@ function generateOTP() {
         error: function () {
         },
         success: function (resp) {
-
+            $(".enteredMNo").text($("#phoneNumber").val());
+            $(".tblLogin").addClass('hide');
+            $(".tblVerify").removeClass('hide');
+            $('#divLoading').addClass('hide');
         }
     });
 }
 
 function checkOTP() {
+    $('#divLoading').removeClass('hide');
     var fdata = {
         data: $("#phoneNumber").val(),
         status: 1,
@@ -156,6 +167,7 @@ function checkOTP() {
         error: function () {
         },
         success: function (resp) {
+            $('#divLoading').addClass('hide');
 //            $( "li" ).eq( 2 )
             $('#divCheckPin').html(resp);
             var checkHtml = $.trim($('#divCheckPin').find("div").eq(2).html()).substr(0, 3);
@@ -183,8 +195,9 @@ function getRecords() {
         error: function () {
         },
         success: function (resp) {
+            $('#divLoading').addClass('hide');
             $('#divCallRecords').html(resp);
-            $('.tblVerify').hide();
+            $('.tblVerify').addClass('hide');
             $('#divCallRecords').find('#GridView1').addClass('table table-bordered table-striped');
 //            $.each(resp, function (index, val) {
 //                var newTr = '<tr id="tr' + val.Call_No + '">';
