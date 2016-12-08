@@ -6,12 +6,13 @@
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
     changeCss('#GridView1, #btnRefresh', 'font-size:' + eval(fontSize / 2.2) + 'px;');
+    changeCss('.fa-check, .fa-check-circle, .fa-spinner, .fa-head', 'font-size:' + eval(20 * screenWidth / 360) + 'px;');
 
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
         $('#divLoading').removeClass('hide');
         $('.tblLogin, .tblVerify').addClass('hide');
-        $('.lnkLogOut, #btnRefresh').removeClass('hide');
+        $('.lnkLogOut, .fa-refresh').removeClass('hide');
 
         getRecords();
     }
@@ -27,7 +28,7 @@
             window.location.reload();
         }
     })
-    $('#btnRefresh').click(function () {
+    $('.fa-refresh').click(function () {
         $('#divLoading').removeClass('hide');
         getRecords();
     })
@@ -42,20 +43,12 @@ function onLoad() {
 }
 
 function initApp() {
+    console.log('inside init app');
     // onSuccess Callback
     // This method accepts a Position object, which contains the
     // current GPS coordinates
     //
     var onSuccess = function (position) {
-        /*alert('Latitude: ' + position.coords.latitude + '\n' +
-         'Longitude: ' + position.coords.longitude + '\n' +
-         'Altitude: ' + position.coords.altitude + '\n' +
-         'Accuracy: ' + position.coords.accuracy + '\n' +
-         'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-         'Heading: ' + position.coords.heading + '\n' +
-         'Speed: ' + position.coords.speed + '\n' +
-         'Timestamp: ' + position.timestamp + '\n');*/
-
         var latLongDtls = 'Latitude: ' + position.coords.latitude + '\n' +
                 'Longitude: ' + position.coords.longitude + '\n' +
                 'Altitude: ' + position.coords.altitude + '\n' +
@@ -65,17 +58,21 @@ function initApp() {
                 'Speed: ' + position.coords.speed + '\n' +
                 'Timestamp: ' + position.timestamp + '\n';
 
-        $('#latlongText').html(latLongDtls);
+        localStorage.setItem("Latitude", position.coords.latitude);
+        localStorage.setItem("Longitude", position.coords.longitude);
     };
 
     // onError Callback receives a PositionError object
-    //
     function onError(error) {
-        alert('code: ' + error.code + '\n' +
-                'message: ' + error.message + '\n');
+//        alert('code: ' + error.code + '\n' +
+//                'message: ' + error.message + '\n');
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    setTimeout(function () {
+        initApp();
+    }, 10000);
 }
 
 $(function () {
@@ -186,7 +183,7 @@ function checkOTP() {
             if (checkHtml === 'Yes') {
                 localStorage.setItem("logedIn", "true");
                 $('.lnkLogOut').removeClass('hide');
-                $('#btnRefresh').removeClass('hide');
+                $('.fa-refresh').removeClass('hide');
                 localStorage.setItem("logedInMobile", fdata.data);
                 localStorage.setItem("logedInPin", fdata.pin);
                 getRecords();
@@ -216,63 +213,47 @@ function getRecords() {
             $('#divCallRecords').html(resp);
             $('.tblVerify').addClass('hide');
             $('#divCallRecords').find('#GridView1').addClass('table table-bordered table-striped');
-//            $.each(resp, function (index, val) {
-//                var newTr = '<tr id="tr' + val.Call_No + '">';
-//                var inpSelected = '', comSelected = '';
-//
-//                if (val.cbd_status === 'p') {
-//                    inpSelected = 'selected';
-//                }
-//                if (val.cbd_status === 'c') {
-//                    comSelected = 'selected';
-//                }
-//                newTr += '<td class="recordId">' + val.Call_No + '</td>' +
-//                        '<td><input type="text" class="clsDate" value="' + val.Call_Date + '"/></td>' +
-//                        '<td>' + val.Ac_Party_Mobile_No + '</td>' +
-//                        '<td>' + val.Ac_Name + '</td>' +
-//                        '<td>' + val.Problem + '</td>' +
-//                        '<td>' + val.City + '</td>' +
-//                        '<td>' +
-//                        '<select class="callStatus">' +
-//                        '<option value="p" ' + inpSelected + ' label="In-progress">In-progress</option>' +
-//                        '<option value="c" ' + comSelected + ' label="Complete">Complete</option>' +
-//                        '</select></td>' +
-//                        '<td><input type="button" name="save" id="btnSave" value="Save" class="btn btn-success"></td>';
-//                newTr += '</tr>';
-//                $('.tblBody').append(newTr);
-//
-//                $("#tr" + val.Call_No).find(".clsDate").datepicker({
-//                    defaultDate: "+1w",
-//                    changeMonth: true,
-//                    changeYear: true,
-//                    numberOfMonths: 1,
-//                    dateFormat: "yy-mm-dd"
-//                });
-//
-//                $("#tr" + val.Call_No).find("#btnSave").click(function () {
-//                    var fdata = {
-//                        Call_No: $(this).parent().parent().find('.recordId').text(),
-//                        date: $(this).parent().parent().find('.clsDate').val(),
-//                        status: $(this).parent().parent().find('.callStatus').val(),
-//                        mode: 'update'
-//                    };
-//                    $.ajax({
-//                        url: 'https://hello-world-mujaffar.c9users.io/hello-world.php',
-//                        type: 'POST',
-//                        dataType: 'json',
-//                        data: fdata,
-//                        async: true,
-//                        error: function () {
-//                        },
-//                        success: function (resp) {
-//                            if (resp.status == 'success') {
-//                                alert('Record saved :)');
-//                            }
-//                        }
-//                    });
-//                });
-//
-//            });
+
+            $('#divCallRecords').find("#GridView1").find('tr').each(function () {
+                if ($(this).find("td:nth-child(1)").text() !== 'Date') {
+                    $(this).find("td:nth-child(1)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
+
+                    $(this).find('.fa-check').click(function () {
+                        $(this).hide();
+                        $(this).parent().find('.fa-spinner').removeClass('hide');
+                        var objFaCheck = $(this);
+                        var fdata = {
+                            userId: localStorage.getItem("userId"),
+                            latitude: localStorage.getItem("Latitude"),
+                            longitude: localStorage.getItem("Longitude"),
+                            call_no: $(objFaCheck).parent().find('.recordId').text(),
+                            status: 'complete'
+                        };
+                        $.ajax({
+                            url: recordUpdateHost,
+                            type: 'GET',
+                            dataType: 'html',
+                            data: fdata,
+                            async: true,
+                            error: function () {
+                                alert('Record not saved, Try again');
+                                $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
+                                $(objFaCheck).show();
+                            },
+                            success: function (resp) {
+                                if (resp !== 'success') {
+                                    $(objFaCheck).removeClass('fa-check').addClass('fa-check-circle');
+                                } else {
+                                    alert('Record not saved, Try again');
+                                }
+                                $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
+                                $(objFaCheck).show();
+                            }
+                        });
+
+                    })
+                }
+            });
 
         }
     });

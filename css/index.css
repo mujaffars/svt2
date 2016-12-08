@@ -125,7 +125,11 @@ h1 {
     font-weight: normal;
     color: #c11515;
 }
+.imgLoader{
+    height: 15px;
+}
 #divLoading{
+    font-size: 30px;
     text-align: center;    
 }
 .cntainr{
@@ -133,4 +137,30 @@ h1 {
 }
 #btnRefresh{
     float: right;
+}
+.fa-check-circle, .fa-check{
+    font-size: 30px;
+    color: #057705;
+}
+#GridView1 tr td:first-child{
+    text-align: center;
+}
+.fa-spinner{
+    font-size: 30px;
+    color: chocolate;
+}
+.fa-head{
+    font-size: 20px;
+    color: whitesmoke;
+    float: right;
+    margin-left: 10px;
+}
+.fa-head:focus{
+    color: whitesmoke;
+}
+.fa-head:hover{
+    color: whitesmoke;
+}
+.navbar-header{
+    float: none;
 }
