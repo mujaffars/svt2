@@ -80,7 +80,7 @@ function registerAdEvents() {
             showWelcome();
             return false;
         } else {
-            var r = confirm('Do you want really want to close Alchemy Lite?');
+            var r = confirm('Do you want really want to exit?');
             if (r === true)
             {
                 (navigator.app && navigator.app.exitApp()) || (device && device.exitApp());
