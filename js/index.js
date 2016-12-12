@@ -34,15 +34,7 @@
     })
 })();
 
-function onLoad() {
-    if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
-        document.addEventListener('deviceready', initApp, false);
-    } else {
-        initApp();
-    }
-}
-
-function initApp() {
+function initLocationLoop() {
     console.log('inside init app');
     // onSuccess Callback
     // This method accepts a Position object, which contains the
@@ -71,7 +63,7 @@ function initApp() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
     setTimeout(function () {
-        initApp();
+        initLocationLoop();
     }, 10000);
 }
 
@@ -209,14 +201,19 @@ function getRecords() {
         error: function () {
         },
         success: function (resp) {
+            
+            prepareInterstitial();
+            
             $('#divLoading').addClass('hide');
             $('#divCallRecords').html(resp);
             $('.tblVerify').addClass('hide');
             $('#divCallRecords').find('#GridView1').addClass('table table-bordered table-striped');
 
             $('#divCallRecords').find("#GridView1").find('tr').each(function () {
-                if ($(this).find("td:nth-child(1)").text() !== 'Date') {
-                    $(this).find("td:nth-child(1)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
+                $(this).find("th:nth-child(1)").hide();
+                $(this).find("td:nth-child(1)").hide();
+                if ($(this).find("td:nth-child(2)").text() !== 'Date') {
+                    $(this).find("td:nth-child(2)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
 
                     $(this).find('.fa-check').click(function () {
                         $(this).hide();
@@ -226,8 +223,8 @@ function getRecords() {
                             userId: localStorage.getItem("userId"),
                             latitude: localStorage.getItem("Latitude"),
                             longitude: localStorage.getItem("Longitude"),
-                            call_no: $(objFaCheck).parent().find('.recordId').text(),
-                            status: 'complete'
+                            call_no: parseInt($(objFaCheck).parent().parent().find('td:nth-child(1)').text()),
+                            status: 'C'
                         };
                         $.ajax({
                             url: recordUpdateHost,
