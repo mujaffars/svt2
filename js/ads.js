@@ -1,5 +1,6 @@
 var jsLoaded = true;
 function onLoad() {
+    initLocationLoop();
     if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
         document.addEventListener('deviceready', initApp, false);
     } else {
@@ -8,7 +9,6 @@ function onLoad() {
     $('.bs-example-modal-sm').on('hidden.bs.modal', function () {
         //AdMob.removeBanner();
     })
-    initLocationLoop();
 }
 
 var admobid = {};
