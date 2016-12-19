@@ -32,7 +32,25 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
-    background-image: url('../img/transp_bg.png')
+    background-image: url('../img/transp_bg.png');
+    text-transform: capitalize !important;
+}
+
+.modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal.fade .modal-dialog {
+  transform: translate(0, -100%);
+}
+
+.modal.in .modal-dialog {
+  transform: translate(0, 0);
 }
 
 /* Portrait layout (default) */
@@ -109,6 +127,7 @@ h1 {
 }
 .btn{
     padding: 4px;
+    text-transform: capitalize;
 }
 .ui-datepicker-title{
     color : grey;        
@@ -150,7 +169,7 @@ h1 {
     color: chocolate;
 }
 .fa-head{
-    font-size: 20px;
+    font-size: 30px;
     color: whitesmoke;
     float: right;
     margin-left: 10px;

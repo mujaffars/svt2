@@ -1,12 +1,15 @@
 (function () {
     changeCss('body', 'font-size:' + fontSize + 'px;');
+    changeCss('#modalShellBody .btn', 'font-size:' + btnFontSize + 'px;');
+    changeCss('.modal-content .close', 'font-size:' + btnFontSize + 'px;');
+    changeCss('.modal-content .modal-title', 'font-size:' + eval(eval(btnFontSize / 2) + (btnFontSize / 4)) + 'px;');
     changeCss('.btn', 'font-size:' + fontSize + 'px;');
     changeCss('.navbar-brand', 'font-size:' + eval(fontSize / 2) + 'px;');
     changeCss('#divCallRecords', 'font-size:' + recordFontSize + 'px;');
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
     changeCss('#GridView1, #btnRefresh', 'font-size:' + eval(fontSize / 2.2) + 'px;');
-    changeCss('.fa-check, .fa-check-circle, .fa-spinner, .fa-head', 'font-size:' + eval(20 * screenWidth / 360) + 'px;');
+    changeCss('.fa-check, .fa-check-circle, .fa-spinner, .fa-head', 'font-size:' + eval(30 * screenWidth / 360) + 'px;');
 
     var logedIn = localStorage.getItem("logedIn");
     if (logedIn === 'true') {
@@ -201,9 +204,9 @@ function getRecords() {
         error: function () {
         },
         success: function (resp) {
-            
+
             prepareInterstitial();
-            
+
             $('#divLoading').addClass('hide');
             $('#divCallRecords').html(resp);
             $('.tblVerify').addClass('hide');
@@ -213,41 +216,14 @@ function getRecords() {
                 $(this).find("th:nth-child(1)").hide();
                 $(this).find("td:nth-child(1)").hide();
                 if ($(this).find("td:nth-child(2)").text() !== 'Date') {
-                    $(this).find("td:nth-child(2)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
+                    // $(this).find("td:nth-child(2)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
 
-                    $(this).find('.fa-check').click(function () {
-                        $(this).hide();
-                        $(this).parent().find('.fa-spinner').removeClass('hide');
-                        var objFaCheck = $(this);
-                        var fdata = {
-                            userId: localStorage.getItem("userId"),
-                            latitude: localStorage.getItem("Latitude"),
-                            longitude: localStorage.getItem("Longitude"),
-                            call_no: parseInt($(objFaCheck).parent().parent().find('td:nth-child(1)').text()),
-                            status: 'C'
-                        };
-                        $.ajax({
-                            url: recordUpdateHost,
-                            type: 'GET',
-                            dataType: 'html',
-                            data: fdata,
-                            async: true,
-                            error: function () {
-                                alert('Record not saved, Try again');
-                                $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
-                                $(objFaCheck).show();
-                            },
-                            success: function (resp) {
-                                if (resp !== 'success') {
-                                    $(objFaCheck).removeClass('fa-check').addClass('fa-check-circle');
-                                } else {
-                                    alert('Record not saved, Try again');
-                                }
-                                $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
-                                $(objFaCheck).show();
-                            }
-                        });
-
+                    $(this).click(function () {
+                        var theUpdatingTr = $(this);
+                        var callId = parseInt($(this).find('td:nth-child(1)').text());
+                        var modalSkeleton = genModalSkeleton();
+                        $(modalSkeleton).modal("show");
+                        setModalContent(modalSkeleton, 'markComplete', callId, theUpdatingTr);
                     })
                 }
             });
