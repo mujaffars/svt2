@@ -12,7 +12,9 @@
     changeCss('.fa-check, .fa-check-circle, .fa-spinner, .fa-head', 'font-size:' + eval(30 * screenWidth / 360) + 'px;');
 
     var logedIn = localStorage.getItem("logedIn");
-    if (logedIn === 'true') {
+    
+    if (logedIn === 'true' && localStorage.getItem("userId") !== null && 
+            localStorage.getItem("userId") !== '' && localStorage.getItem("userId") !== undefined) {
         $('#divLoading').removeClass('hide');
         $('.tblLogin, .tblVerify').addClass('hide');
         $('.lnkLogOut, .fa-refresh').removeClass('hide');

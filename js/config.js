@@ -62,51 +62,71 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                     $(modalSkeleton).find('#modalShellBody').html('').append(resp);
                     $(modalSkeleton).find('#btnComplete').attr('callId', callId);
                     $(modalSkeleton).find('#myModalLabel').text($(theUpdatingTr).find("td:nth-child(3)").text());
-                    
-                    $(modalSkeleton).find('.clsLatitude').text(localStorage.getItem("Latitude"));
-                    $(modalSkeleton).find('.clsLongitude').text(localStorage.getItem("Longitude"));
-                    
+
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
                         if ($(this).hasClass('btn-success')) {
-                            var $this = $(this);
-                            $this.removeClass('btn btn-success');
-                            $this.text('saving ...');
-//                            $(this).hide();
-//                            $(this).parent().find('.fa-spinner').removeClass('hide');
-//                            var objFaCheck = $(this);
-                            var fdata = {
-                                userId: localStorage.getItem("userId"),
-                                latitude: localStorage.getItem("Latitude"),
-                                longitude: localStorage.getItem("Longitude"),
-                                call_no: $(this).attr('callId'),
-                                status: 'C'
-                            };
-                            $.ajax({
-                                url: recordUpdateHost,
-                                type: 'GET',
-                                dataType: 'html',
-                                data: fdata,
-                                async: true,
-                                error: function () {
-                                    alert('Record not saved, Try again');
-//                                    $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
-//                                    $(objFaCheck).show();
-                                },
-                                success: function (resp) {
-                                    if (resp !== 'success') {
-                                        $('.bs-example-modal-sm').modal('hide');
-                                        $(theUpdatingTr).remove();
-//                                        $(objFaCheck).removeClass('fa-check').addClass('fa-check-circle');
-                                    } else {
-                                        $this.text('Complete');
-                                        $this.addClass('btn btn-success');
+
+                            var objBtn = $(this);
+
+                            var onLocSuccess = function (position) {
+                                var latLongDtls = 'Latitude: ' + position.coords.latitude + '\n' +
+                                        'Longitude: ' + position.coords.longitude + '\n' +
+                                        'Altitude: ' + position.coords.altitude + '\n' +
+                                        'Accuracy: ' + position.coords.accuracy + '\n' +
+                                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                                        'Heading: ' + position.coords.heading + '\n' +
+                                        'Speed: ' + position.coords.speed + '\n' +
+                                        'Timestamp: ' + position.timestamp + '\n';
+
+                                localStorage.setItem("Latitude", position.coords.latitude);
+                                localStorage.setItem("Longitude", position.coords.longitude);
+
+//                                $(modalSkeleton).find('.clsLatitude').text(position.coords.latitude);
+//                                $(modalSkeleton).find('.clsLongitude').text(position.coords.longitude);
+
+                                $(objBtn).removeClass('btn btn-success');
+                                $(objBtn).text('saving ...');
+                                var fdata = {
+                                    userId: localStorage.getItem("userId"),
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude,
+                                    call_no: $(this).attr('callId'),
+                                    status: 'C'
+                                };
+                                $.ajax({
+                                    url: recordUpdateHost,
+                                    type: 'GET',
+                                    dataType: 'html',
+                                    data: fdata,
+                                    async: true,
+                                    error: function () {
                                         alert('Record not saved, Try again');
+                                    },
+                                    success: function (resp) {
+                                        if (resp !== 'success') {
+                                            $('.bs-example-modal-sm').modal('hide');
+                                            $(theUpdatingTr).remove();
+                                        } else {
+                                            $(objBtn).text('Complete');
+                                            $(objBtn).addClass('btn btn-success');
+                                            alert('Record not saved, Try again');
+                                        }
                                     }
-//                                    $(objFaCheck).parent().find('.fa-spinner').addClass('hide');
-//                                    $(objFaCheck).show();
-                                }
-                            });
+                                });
+
+                            };
+                            
+                            navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
+
+                            // onError Callback receives a PositionError object
+                            function onLocError(error) {
+                                $(objBtn).text('Complete');
+                                $(objBtn).addClass('btn btn-success');
+                                alert('code: ' + error.code + '\n' +
+                                        'message: ' + error.message + '\n');
+                            }
+
                         }
                     })
 

@@ -1,6 +1,6 @@
 var jsLoaded = true;
 function onLoad() {
-    initLocationLoop();
+    //initLocationLoop();
     if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
         document.addEventListener('deviceready', initApp, false);
     } else {
