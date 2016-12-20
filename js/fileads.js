@@ -129,9 +129,11 @@ function showBannerAtGivenXY() {
 }
 function prepareInterstitial() {
     var random = Math.floor(Math.random() * 4) + 1;
-    if (random === 1) {
-        if (AdMob) {
-            AdMob.prepareInterstitial({adId: admobid.interstitialVideo, autoShow: true});
+    if (random === 1) { console.log('we are here');
+        if (typeof AdMob !== "undefined") {
+            if (AdMob) {
+                AdMob.prepareInterstitial({adId: admobid.interstitialVideo, autoShow: true});
+            }
         }
     }
 }

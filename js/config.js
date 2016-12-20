@@ -116,16 +116,17 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                                 });
 
                             };
-                            
-                            navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
 
                             // onError Callback receives a PositionError object
                             function onLocError(error) {
                                 $(objBtn).text('Complete');
                                 $(objBtn).addClass('btn btn-success');
-                                alert('code: ' + error.code + '\n' +
-                                        'message: ' + error.message + '\n');
+//                                alert('code: ' + error.code + '\n' +
+//                                        'message: ' + error.message + '\n');
+                                alert('Enable to get location allow it from location settings');
                             }
+                            
+                            navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
 
                         }
                     })
