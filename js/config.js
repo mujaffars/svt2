@@ -123,9 +123,13 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                                 $(objBtn).addClass('btn btn-success');
 //                                alert('code: ' + error.code + '\n' +
 //                                        'message: ' + error.message + '\n');
-                                alert('Enable to get location allow it from location settings');
+                                if (error.code === 1) {
+                                    alert('Enable to get location, Allow access from location settings');
+                                } else {
+                                    alert('Something went wrong, Please try again');
+                                }
                             }
-                            
+
                             navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
 
                         }
