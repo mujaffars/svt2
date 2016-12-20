@@ -62,6 +62,10 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                     $(modalSkeleton).find('#modalShellBody').html('').append(resp);
                     $(modalSkeleton).find('#btnComplete').attr('callId', callId);
                     $(modalSkeleton).find('#myModalLabel').text($(theUpdatingTr).find("td:nth-child(3)").text());
+                    
+                    $(modalSkeleton).find('.clsLatitude').text(localStorage.getItem("Latitude"));
+                    $(modalSkeleton).find('.clsLongitude').text(localStorage.getItem("Longitude"));
+                    
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
                         if ($(this).hasClass('btn-success')) {
@@ -96,6 +100,7 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
 //                                        $(objFaCheck).removeClass('fa-check').addClass('fa-check-circle');
                                     } else {
                                         $this.text('Complete');
+                                        $this.addClass('btn btn-success');
                                         alert('Record not saved, Try again');
                                     }
 //                                    $(objFaCheck).parent().find('.fa-spinner').addClass('hide');

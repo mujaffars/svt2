@@ -4,7 +4,7 @@
     changeCss('.modal-content .close', 'font-size:' + btnFontSize + 'px;');
     changeCss('.modal-content .modal-title', 'font-size:' + eval(eval(btnFontSize / 2) + (btnFontSize / 4)) + 'px;');
     changeCss('.btn', 'font-size:' + fontSize + 'px;');
-    changeCss('.navbar-brand', 'font-size:' + eval(fontSize / 2) + 'px;');
+    changeCss('.navbar-brand', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('#divCallRecords', 'font-size:' + recordFontSize + 'px;');
     changeCss('label.error', 'font-size:' + eval(fontSize / 1.5) + 'px;');
     changeCss('.imgLoader', 'height:' + eval(fontSize / 2) + 'px;');
