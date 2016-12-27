@@ -195,7 +195,8 @@ function getRecords() {
     $('.tblBody').html('');
     var fdata = {
         call: 'P',
-        id: localStorage.getItem("userId")
+        id: localStorage.getItem("userId"),
+        appVersion: appVersion
     };
     $.ajax({
         url: serverHost,
@@ -204,6 +205,8 @@ function getRecords() {
         data: fdata,
         async: true,
         error: function () {
+            $('#divLoading').addClass('hide');
+            alert('Something went wrong! Please try again');
         },
         success: function (resp) {
 

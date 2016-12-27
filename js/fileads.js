@@ -54,7 +54,7 @@ document.addEventListener('onDismissInterstitialAd', function (event) {
     })
 })
 
-function prepareInterstitial() {
+function showAd() {
     var random = Math.floor(Math.random() * 4) + 1;
     if (random === 1) {
         if (typeof AdMob !== "undefined") {

@@ -16,6 +16,8 @@ var btnFontSize = parseInt(eval(eval(screenWidth * 6) / 100));
 var recordFontSize = parseInt(eval(eval(screenWidth * 4) / 100));
 var logedIn = false;
 
+var appVersion = 1.1;
+
 
 function genModalSkeleton() {
     var modalSkeleton = $("<div />", {
