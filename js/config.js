@@ -93,7 +93,7 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                                     userId: localStorage.getItem("userId"),
                                     latitude: position.coords.latitude,
                                     longitude: position.coords.longitude,
-                                    call_no: $(this).attr('callId'),
+                                    call_no: $(objBtn).attr('callId'),
                                     status: 'C'
                                 };
                                 $.ajax({
