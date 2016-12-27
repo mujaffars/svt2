@@ -207,7 +207,7 @@ function getRecords() {
         },
         success: function (resp) {
 
-            prepareInterstitial();
+            showAd();
 
             $('#divLoading').addClass('hide');
             $('#divCallRecords').html(resp);

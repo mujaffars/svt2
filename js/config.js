@@ -119,15 +119,16 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
 
                             // onError Callback receives a PositionError object
                             function onLocError(error) {
-                                $(objBtn).text('Complete');
-                                $(objBtn).addClass('btn btn-success');
 //                                alert('code: ' + error.code + '\n' +
 //                                        'message: ' + error.message + '\n');
+                                alert('Enable to get location, Allow access from location settings');
                                 if (error.code === 1) {
                                     alert('Enable to get location, Allow access from location settings');
                                 } else {
                                     alert('Something went wrong, Please try again');
                                 }
+                                $(objBtn).text('Complete');
+                                $(objBtn).addClass('btn btn-success');
                             }
 
                             navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
