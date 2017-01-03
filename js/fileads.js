@@ -6,8 +6,23 @@ if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
     }
 }
 
-document.addEventListener('deviceready', function () {
+function onLoad() {
+    createDb();
+    if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+        document.addEventListener('deviceready', initApp, false);
+    } else {
+        initApp();
+    }
 
+    $('.bs-example-modal-sm').on('hidden.bs.modal', function () {
+        //AdMob.removeBanner();
+    })
+}
+
+function initApp() {
+    
+    alert('Inside Init app');
+    
     AdMob.setOptions({
         publisherId: admobid.banner,
         interstitialAdId: admobid.interstitial,
@@ -34,7 +49,7 @@ document.addEventListener('deviceready', function () {
         AdMob.showInterstitial()
     }
 
-    alert('Inside device ready');
+    alert('Inside device ready get location');
     navigator.geolocation.getCurrentPosition(
                                     function (position) {
                                         alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
@@ -47,7 +62,7 @@ document.addEventListener('deviceready', function () {
                             }
                             );
                     
-}, false)
+}
 
 document.addEventListener('onFailedToReceiveAd', function (event) {
     console.log(event)
