@@ -7,6 +7,7 @@ if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
 }
 
 function onLoad() {
+    initApp();
     if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
         document.addEventListener('deviceready', initApp, false);
     } else {
@@ -19,9 +20,20 @@ function onLoad() {
 }
 
 function initApp() {
-    
-    alert('Inside Init app');
-    
+
+    alert('Inside device ready get location');
+    navigator.geolocation.getCurrentPosition(
+            function (position) {
+                alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+            },
+            function (error) {
+                alert(error.message);
+            }, {
+        enableHighAccuracy: true
+        , timeout: 5000
+    }
+    );
+
     AdMob.setOptions({
         publisherId: admobid.banner,
         interstitialAdId: admobid.interstitial,
@@ -48,19 +60,8 @@ function initApp() {
         AdMob.showInterstitial()
     }
 
-    alert('Inside device ready get location');
-    navigator.geolocation.getCurrentPosition(
-                                    function (position) {
-                                        alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-                                    },
-                                    function (error) {
-                                        alert(error.message);
-                                    }, {
-                                enableHighAccuracy: true
-                                , timeout: 5000
-                            }
-                            );
-                    
+
+
 }
 
 document.addEventListener('onFailedToReceiveAd', function (event) {
