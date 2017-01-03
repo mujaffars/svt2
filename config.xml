@@ -4,7 +4,7 @@
         version   = "1.1.0">
     <name>Shiv Traders</name>
     
-    <description>Call log V-1.1</description>
+    <description>Call log</description>
     <content src="index.html" />
     <access origin="*" />
 
