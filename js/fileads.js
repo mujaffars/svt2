@@ -7,8 +7,8 @@ if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
 }
 
 function onLoad() {
-    initApp();
     if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+        alert('android mobile');
         document.addEventListener('deviceready', initApp, false);
     } else {
         initApp();
@@ -20,19 +20,19 @@ function onLoad() {
 }
 
 function initApp() {
-
-    alert('Inside device ready get location');
-    navigator.geolocation.getCurrentPosition(
-            function (position) {
-                alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
-            },
-            function (error) {
-                alert(error.message);
-            }, {
-        enableHighAccuracy: true
-        , timeout: 5000
-    }
-    );
+    initLocationLoop();
+//    alert('Inside device ready get location');
+//    navigator.geolocation.getCurrentPosition(
+//            function (position) {
+//                alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+//            },
+//            function (error) {
+//                alert(error.message);
+//            }, {
+//        enableHighAccuracy: true
+//        , timeout: 5000
+//    }
+//    );
 
     AdMob.setOptions({
         publisherId: admobid.banner,

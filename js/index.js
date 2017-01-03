@@ -54,15 +54,15 @@ function initLocationLoop() {
                 'Heading: ' + position.coords.heading + '\n' +
                 'Speed: ' + position.coords.speed + '\n' +
                 'Timestamp: ' + position.timestamp + '\n';
-
+        alert(position.coords.latitude+" "+position.coords.longitude);
         localStorage.setItem("Latitude", position.coords.latitude);
         localStorage.setItem("Longitude", position.coords.longitude);
     };
 
     // onError Callback receives a PositionError object
     function onError(error) {
-//        alert('code: ' + error.code + '\n' +
-//                'message: ' + error.message + '\n');
+        alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -70,6 +70,7 @@ function initLocationLoop() {
     setTimeout(function () {
         initLocationLoop();
     }, 10000);
+    alert('Inside location loop');
 }
 
 $(function () {
