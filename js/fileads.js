@@ -2,7 +2,7 @@ var admobid = {}
 if (/(android)/i.test(navigator.userAgent)) {  // for android & amazon-fireos
     admobid = {
         banner: 'ca-app-pub-3868593263837372/8649306643',
-        interstitial: 'ca-app-pub-3868593263837372/4224486649',
+        interstitial: 'ca-app-pub-3868593263837372/5758755042',
     }
 }
 
@@ -20,7 +20,7 @@ document.addEventListener('deviceready', function () {
 
     AdMob.createBannerView({
         isTesting: false,
-        autoShow: true,
+        autoShow: false,
     });
 
     AdMob.prepareInterstitial({
