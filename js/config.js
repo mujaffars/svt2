@@ -68,8 +68,22 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
                         if ($(this).hasClass('btn-success')) {
-                            
+
                             alert('Inside btn click');
+
+                            navigator.geolocation.getCurrentPosition(
+                                    function (position) {
+                                        alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+                                    },
+                                    function (error) {
+                                        alert(error.message);
+                                    }, {
+                                enableHighAccuracy: true
+                                , timeout: 5000
+                            }
+                            );
+                            
+                            alert('after get location');
                             
                             var objBtn = $(this);
                             var onLocSuccess = function (position) {
@@ -81,16 +95,16 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                                         'Heading: ' + position.coords.heading + '\n' +
                                         'Speed: ' + position.coords.speed + '\n' +
                                         'Timestamp: ' + position.timestamp + '\n';
-                                
-                                alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
-      
+
+                                alert('Latitude: ' + position.coords.latitude + '\n' +
+                                        'Longitude: ' + position.coords.longitude + '\n' +
+                                        'Altitude: ' + position.coords.altitude + '\n' +
+                                        'Accuracy: ' + position.coords.accuracy + '\n' +
+                                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                                        'Heading: ' + position.coords.heading + '\n' +
+                                        'Speed: ' + position.coords.speed + '\n' +
+                                        'Timestamp: ' + position.timestamp + '\n');
+
 //                                localStorage.setItem("Latitude", position.coords.latitude);
 //                                localStorage.setItem("Longitude", position.coords.longitude);
 
