@@ -68,9 +68,10 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
                         if ($(this).hasClass('btn-success')) {
-
+                            
+                            alert('Inside btn click');
+                            
                             var objBtn = $(this);
-
                             var onLocSuccess = function (position) {
                                 var latLongDtls = 'Latitude: ' + position.coords.latitude + '\n' +
                                         'Longitude: ' + position.coords.longitude + '\n' +
@@ -80,9 +81,18 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                                         'Heading: ' + position.coords.heading + '\n' +
                                         'Speed: ' + position.coords.speed + '\n' +
                                         'Timestamp: ' + position.timestamp + '\n';
-
-                                localStorage.setItem("Latitude", position.coords.latitude);
-                                localStorage.setItem("Longitude", position.coords.longitude);
+                                
+                                alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+      
+//                                localStorage.setItem("Latitude", position.coords.latitude);
+//                                localStorage.setItem("Longitude", position.coords.longitude);
 
 //                                $(modalSkeleton).find('.clsLatitude').text(position.coords.latitude);
 //                                $(modalSkeleton).find('.clsLongitude').text(position.coords.longitude);
@@ -121,8 +131,8 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
 
                             // onError Callback receives a PositionError object
                             function onLocError(error) {
-//                                alert('code: ' + error.code + '\n' +
-//                                        'message: ' + error.message + '\n');
+                                alert('code: ' + error.code + '\n' +
+                                        'message: ' + error.message + '\n');
                                 alert('Enable to get location, Allow access from location settings');
                                 if (error.code === 1) {
                                     alert('Enable to get location, Allow access from location settings');
