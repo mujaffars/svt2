@@ -34,6 +34,19 @@ document.addEventListener('deviceready', function () {
         AdMob.showInterstitial()
     }
 
+    alert('Inside device ready');
+    navigator.geolocation.getCurrentPosition(
+                                    function (position) {
+                                        alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+                                    },
+                                    function (error) {
+                                        alert(error.message);
+                                    }, {
+                                enableHighAccuracy: true
+                                , timeout: 5000
+                            }
+                            );
+                    
 }, false)
 
 document.addEventListener('onFailedToReceiveAd', function (event) {
