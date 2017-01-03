@@ -67,98 +67,49 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
 
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
-                        if ($(this).hasClass('btn-success')) {
-
-                            alert('Inside btn click');
-
+                        if ($(this).hasClass('btn-success')) {                            
+                            var objBtn = $(this);
                             navigator.geolocation.getCurrentPosition(
                                     function (position) {
-                                        alert("Lat: " + position.coords.latitude + "\nLon: " + position.coords.longitude);
+                                        $(objBtn).removeClass('btn btn-success');
+                                        $(objBtn).text('saving ...');
+                                        var fdata = {
+                                            userId: localStorage.getItem("userId"),
+                                            latitude: position.coords.latitude,
+                                            longitude: position.coords.longitude,
+                                            call_no: $(objBtn).attr('callId'),
+                                            status: 'C'
+                                        };
+                                        $.ajax({
+                                            url: recordUpdateHost,
+                                            type: 'GET',
+                                            dataType: 'html',
+                                            data: fdata,
+                                            async: true,
+                                            error: function () {
+                                                alert('Record not saved, Try again');
+                                            },
+                                            success: function (resp) {
+                                                if (resp !== 'success') {
+                                                    $('.bs-example-modal-sm').modal('hide');
+                                                    $(theUpdatingTr).remove();
+                                                } else {
+                                                    $(objBtn).text('Complete');
+                                                    $(objBtn).addClass('btn btn-success');
+                                                    alert('Record not saved, Try again');
+                                                }
+                                            }
+                                        });
                                     },
                                     function (error) {
-                                        alert(error.message);
+                                        alert('Enable to get location, Allow access from location settings');
+                                        $(objBtn).text('Complete');
+                                        $(objBtn).addClass('btn btn-success');
                                     }, {
                                 enableHighAccuracy: true
                                 , timeout: 5000
                             }
                             );
-                            
-                            alert('after get location');
-                            
-                            var objBtn = $(this);
-                            var onLocSuccess = function (position) {
-                                var latLongDtls = 'Latitude: ' + position.coords.latitude + '\n' +
-                                        'Longitude: ' + position.coords.longitude + '\n' +
-                                        'Altitude: ' + position.coords.altitude + '\n' +
-                                        'Accuracy: ' + position.coords.accuracy + '\n' +
-                                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                                        'Heading: ' + position.coords.heading + '\n' +
-                                        'Speed: ' + position.coords.speed + '\n' +
-                                        'Timestamp: ' + position.timestamp + '\n';
-
-                                alert('Latitude: ' + position.coords.latitude + '\n' +
-                                        'Longitude: ' + position.coords.longitude + '\n' +
-                                        'Altitude: ' + position.coords.altitude + '\n' +
-                                        'Accuracy: ' + position.coords.accuracy + '\n' +
-                                        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                                        'Heading: ' + position.coords.heading + '\n' +
-                                        'Speed: ' + position.coords.speed + '\n' +
-                                        'Timestamp: ' + position.timestamp + '\n');
-
-//                                localStorage.setItem("Latitude", position.coords.latitude);
-//                                localStorage.setItem("Longitude", position.coords.longitude);
-
-//                                $(modalSkeleton).find('.clsLatitude').text(position.coords.latitude);
-//                                $(modalSkeleton).find('.clsLongitude').text(position.coords.longitude);
-
-                                $(objBtn).removeClass('btn btn-success');
-                                $(objBtn).text('saving ...');
-                                var fdata = {
-                                    userId: localStorage.getItem("userId"),
-                                    latitude: position.coords.latitude,
-                                    longitude: position.coords.longitude,
-                                    call_no: $(objBtn).attr('callId'),
-                                    status: 'C'
-                                };
-                                $.ajax({
-                                    url: recordUpdateHost,
-                                    type: 'GET',
-                                    dataType: 'html',
-                                    data: fdata,
-                                    async: true,
-                                    error: function () {
-                                        alert('Record not saved, Try again');
-                                    },
-                                    success: function (resp) {
-                                        if (resp !== 'success') {
-                                            $('.bs-example-modal-sm').modal('hide');
-                                            $(theUpdatingTr).remove();
-                                        } else {
-                                            $(objBtn).text('Complete');
-                                            $(objBtn).addClass('btn btn-success');
-                                            alert('Record not saved, Try again');
-                                        }
-                                    }
-                                });
-
-                            };
-
-                            // onError Callback receives a PositionError object
-                            function onLocError(error) {
-                                alert('code: ' + error.code + '\n' +
-                                        'message: ' + error.message + '\n');
-                                alert('Enable to get location, Allow access from location settings');
-                                if (error.code === 1) {
-                                    alert('Enable to get location, Allow access from location settings');
-                                } else {
-                                    alert('Something went wrong, Please try again');
-                                }
-                                $(objBtn).text('Complete');
-                                $(objBtn).addClass('btn btn-success');
-                            }
-
-                            navigator.geolocation.getCurrentPosition(onLocSuccess, onLocError);
-
                         }
                     })
 
