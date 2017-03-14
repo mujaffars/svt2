@@ -79,6 +79,7 @@ body {
 }
 
 .tblLogin{
+    font-family: monospace;
     border: none;
     margin: 0 auto;
     width: 75%;
@@ -104,6 +105,7 @@ body {
     float: right;
 }
 .tblVerify{
+    font-family: monospace;
     text-transform: none;
     margin: 0 auto;
     width: 75%;

@@ -37,6 +37,7 @@
         $('#divLoading').removeClass('hide');
         getRecords();
     })
+
 })();
 
 function initLocationLoop() {
@@ -162,7 +163,8 @@ function checkOTP() {
     var fdata = {
         data: $("#phoneNumber").val(),
         status: 1,
-        pin: $("#txtPin").val()
+        pin: $("#txtPin").val(),
+        appVersion: appVersion
     };
     $.ajax({
         url: serverHost,
@@ -221,7 +223,8 @@ function getRecords() {
             $('#divCallRecords').find("#GridView1").find('tr').each(function () {
                 $(this).find("th:nth-child(1)").hide();
                 $(this).find("td:nth-child(1)").hide();
-                if ($(this).find("td:nth-child(2)").text() !== 'Date') {
+                
+                if ($(this).find("th:nth-child(2)").text() !== 'Date') {
                     // $(this).find("td:nth-child(2)").append('<div class="fa fa-check"></div>').append('<div class="fa fa-spinner hide"></div>');
 
                     $(this).click(function () {

@@ -1,5 +1,5 @@
-var serverHost = 'http://shivtraderssangli.com/getdata.aspx';
-var recordUpdateHost = 'http://shivtraderssangli.com/getdata.aspx';
+var serverHost = 'http://www.shivtraderssangli.com/getdata.aspx';
+var recordUpdateHost = 'http://www.shivtraderssangli.com/getdata.aspx';
 
 //var serverHost = 'http://localhost:56927/wwwroot/getdata.aspx';
 //http://vas.mobilogi.com/api.php?username=stipls&password=pass12345&route=1&sender=STIPLS&mobile[]=9503426967&message[]=TEST SMS';
@@ -24,7 +24,9 @@ function genModalSkeleton() {
         "class": "modal fade bs-example-modal-sm noselect",
         tabindex: "-1",
         role: "dialog",
-        'aria-labelledby': "mySmallModalLabel"
+        'aria-labelledby': "mySmallModalLabel",
+        keyboard: false,
+        'data-backdrop': "true"
     });
     var modal = $("<div />", {
         "class": "modal-dialog modal-sm"
@@ -67,7 +69,7 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
 
                     $(modalSkeleton).find('#btnComplete').click(function () {
 
-                        if ($(this).hasClass('btn-success')) {                            
+                        if ($(this).hasClass('btn-success')) {
                             var objBtn = $(this);
                             navigator.geolocation.getCurrentPosition(
                                     function (position) {
