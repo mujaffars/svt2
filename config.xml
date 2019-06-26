@@ -3,9 +3,9 @@
         id        = "com.mujaffars.calllog"        
         versionCode = "10012"
             version   = "2.0">
-    <name>Vocabulary Quiz</name>
+    <name>Shiv Traders</name>
     
-    <description>Vocabulary Quiz - English Vocabulary Quiz</description>
+    <description>Call log</description>
     <content src="index.html" />
     <access origin="*" />
     <access origin="https://play.google.com/*" launch-external="yes" />
