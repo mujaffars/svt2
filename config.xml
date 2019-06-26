@@ -13,7 +13,6 @@
     <preference name="permissions" value="none"/>
     
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
-    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
     
     <gap:plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     
