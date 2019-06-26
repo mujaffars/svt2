@@ -1,5 +1,6 @@
 var serverHost = 'http://www.shivinfotech.co.in/getdata.aspx';
 var recordUpdateHost = 'http://www.shivinfotech.co.in/getdata.aspx';
+var recordForwardHost = 'http://www.shivinfotech.co.in/getcallforward.aspx';
 
 //var serverHost = 'http://localhost:56927/wwwroot/getdata.aspx';
 //http://vas.mobilogi.com/api.php?username=stipls&password=pass12345&route=1&sender=STIPLS&mobile[]=9503426967&message[]=TEST SMS';
@@ -79,6 +80,28 @@ function setModalContent(modalSkeleton, forwhat, callId, theUpdatingTr) {
                 }
             });
             break;
+        case 'forward':
+            $.ajax({
+                url: 'forward.html',
+                type: 'GET',
+                dataType: 'html',
+                async: true,
+                error: function () {
+                },
+                success: function (resp) {
+                    $(modalSkeleton).find('#modalShellBody').html('').append(resp);
+                    $(modalSkeleton).find('#btnForward').attr('callId', callId);
+                    $(modalSkeleton).find('#myModalLabel').text($(theUpdatingTr).find("td:nth-child(3)").text());
+
+                    $(modalSkeleton).find('#btnForward').click(function () {
+                        var forwardText = $(modalSkeleton).find('#forwardText').val();
+                        var objBtn = $(this);
+                        forwardTask(objBtn, theUpdatingTr, forwardText);
+                    })
+
+                }
+            });
+            break;
         default :
 
             break;
@@ -127,4 +150,36 @@ function completeTask(objBtn, theUpdatingTr) {
         , timeout: 5000
     }
     );
+}
+
+function forwardTask(objBtn, theUpdatingTr, forwardText) {
+    //?flag=F&&emp_id=1068&&call_no=12514&&call_date=2017-09-14&&reason=TimePass
+
+    var fdata = {
+        flag: 'F',
+        emp_id: '',
+        call_no: $(objBtn).attr('callId'),
+        call_date: '',
+        reason: forwardText
+    }
+    $.ajax({
+        url: recordForwardHost,
+        type: 'GET',
+        dataType: 'html',
+        data: fdata,
+        async: true,
+        error: function () {
+            alert('Record not saved, Try again');
+        },
+        success: function (resp) {
+            if (resp !== 'success') {
+                $('.bs-example-modal-sm').modal('hide');
+                $(theUpdatingTr).remove();
+            } else {
+                $(objBtn).text('Complete');
+                $(objBtn).addClass('btn btn-success');
+                alert('Record not saved, Try again');
+            }
+        }
+    });
 }
