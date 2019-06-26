@@ -14,7 +14,7 @@
     
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     
-    <gap:plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" spec="~4.0.0" />
     
     <!-- Customize your app and platform with the preference element. -->
     <preference name='phonegap-version' value='cli-7.1.0' />
